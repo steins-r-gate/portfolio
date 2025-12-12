@@ -78,12 +78,55 @@ body {
 }
 
 .navbar-top .nav-container {
-    max-width: 900px;
+    max-width: 1100px;  /* increased to accommodate docs button */
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    position: relative;  /* for absolute positioning of docs button */
+    padding: 0 2rem;  /* padding to prevent button touching edges */
+}
+
+/* ===== NAVBAR LOGO ===== */
+/* Cool code-style logo on the left - matches the footer style */
+.navbar-logo {
+    position: absolute;
+    left: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    transition: all 0.3s ease;
+}
+
+.logo-bracket {
+    color: var(--primary);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.logo-text {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+/* Logo hover effect - brackets move outward */
+.navbar-logo:hover .logo-bracket:first-child {
+    transform: translateX(-3px);
+}
+
+.navbar-logo:hover .logo-bracket:last-child {
+    transform: translateX(3px);
+}
+
+.navbar-logo:hover .logo-text {
+    color: var(--primary);
 }
 
 .nav-item {
@@ -170,6 +213,36 @@ body {
 
 .nav-dropdown:hover .dropdown-arrow {
     transform: rotate(180deg);  /* flip arrow when dropdown opens */
+}
+
+/* ===== DOCUMENTATION BUTTON ===== */
+/* Cool gradient button for documentation page - added for assignment */
+/* Positioned on the right side of navbar - stands out nicely */
+.btn-docs {
+    position: absolute;
+    right: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--bg-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.2);
+}
+
+.btn-docs:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+    color: var(--bg-dark);
+}
+
+.btn-docs i {
+    font-size: 1rem;
 }
 
 /* ===== BOTTOM NAVBAR ===== */
@@ -926,24 +999,6 @@ section {
     display: inline-block;
 }
 
-/* Mobile adjustments for education section */
-@media (max-width: 768px) {
-    .education-timeline::before {
-        left: 6px;
-    }
-    
-    .education-card {
-        padding-left: 2.5rem;
-    }
-    
-    .education-icon {
-        left: -17px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-}
-
 /* ===== CERTIFICATIONS SECTION ===== */
 #certifications {
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.5) 100%);
@@ -1352,13 +1407,35 @@ footer {
 
 /* Mobile devices */
 @media (max-width: 768px) {
+    /* Navbar adjustments for mobile */
     .navbar-top .nav-container {
         gap: 1rem;
         flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+
+    /* Logo mobile positioning */
+    .navbar-logo {
+        position: static;  /* remove absolute positioning on mobile */
+        order: -1;  /* put it first */
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        justify-content: center;
     }
 
     .nav-item {
         font-size: 0.8rem;
+    }
+
+    /* Documentation button mobile styles */
+    .btn-docs {
+        position: static;  /* remove absolute positioning */
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+        order: 10;  /* push to end of flex container */
     }
 
     .hero-buttons {
@@ -1393,6 +1470,22 @@ footer {
         left: 0;
     }
 
+    /* Mobile adjustments for education section */
+    .education-timeline::before {
+        left: 6px;
+    }
+    
+    .education-card {
+        padding-left: 2.5rem;
+    }
+    
+    .education-icon {
+        left: -17px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
     .footer-content {
         flex-direction: column;
         text-align: center;
@@ -1404,6 +1497,15 @@ footer {
     .navbar-bottom {
         padding: 0.5rem 1rem;
         gap: 1rem;
+    }
+
+    /* Hide text on very small screens, keep only icon */
+    .btn-docs span {
+        display: none;
+    }
+
+    .btn-docs {
+        padding: 0.5rem 0.75rem;
     }
 
     section {
