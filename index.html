@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roko Skugor | Cloud Computing Graduate</title>
+    
+    <!-- Bootstrap CSS -->
+    <!-- Had to use Bootstrap for the assignment requirements -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <!-- Spent ages picking fonts that look professional but still cool -->
+    <!-- JetBrains Mono for that terminal/code vibe, Space Grotesk for modern headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <!-- Using Font Awesome for icons - way easier than making SVGs myself -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <!-- Top Navbar - this one hides when you scroll down -->
+    <!-- Took me a while to get the hide/show behavior working properly -->
+    <nav class="navbar-top" id="navbarTop">
+        <div class="nav-container">
+            <a href="#hero" class="nav-item">Home</a>
+            <a href="#about" class="nav-item">About</a>
+            
+            <!-- Portfolio dropdown - learned how to do this from W3Schools -->
+            <div class="nav-dropdown">
+                <span class="nav-item">Portfolio <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="nav-dropdown-content">
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#skills">Skills</a>
+                </div>
+            </div>
+            
+            <!-- Background dropdown for education stuff -->
+            <div class="nav-dropdown">
+                <span class="nav-item">Background <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="nav-dropdown-content">
+                    <a href="#education">Education</a>
+                    <a href="#certifications">Certifications</a>
+                </div>
+            </div>
+            
+            <a href="#hobbies" class="nav-item">Hobbies</a>
+            <a href="#contact" class="nav-item">Contact</a>
+        </div>
+    </nav>
+   
+    <!-- Bottom floating navbar - appears after you scroll past hero -->
+    <!-- Got the idea from AWS console navigation, looks pretty slick -->
+    <nav class="navbar-bottom" id="navbarBottom">
+        <a href="#hero" title="Home"><i class="fas fa-home"></i></a>
+        <a href="#about" title="About"><i class="fas fa-user"></i></a>
+        <a href="#projects" title="Projects"><i class="fas fa-code"></i></a>
+        <a href="#experience" title="Experience"><i class="fas fa-briefcase"></i></a>
+        <a href="#skills" title="Skills"><i class="fas fa-cogs"></i></a>
+        <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <!-- Main landing section with animated background -->
+    <section id="hero">
+        <!-- Canvas for particle animation - this was a pain to get right -->
+        <!-- Had to learn about HTML5 Canvas API from MDN docs -->
+        <canvas id="particles-canvas"></canvas>
+        
+        <div class="hero-content">
+            <!-- Status badge with pulsing dot -->
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Available for opportunities
+            </div>
+            
+            <!-- Main title -->
+            <h1 class="hero-title">Roko Skugor</h1>
+            
+            <!-- Typing animation effect - cycles through different job titles -->
+            <!-- This took FOREVER to get the timing right lol -->
+            <p class="hero-subtitle">
+                <span class="typing-text" id="typingText"></span><span class="cursor">|</span>
+            </p>
+            
+            <!-- Call to action buttons -->
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-hero btn-primary-custom">
+                    <i class="fas fa-rocket"></i> View Projects
+                </a>
+                <button class="btn-hero btn-secondary-custom" onclick="openModal()">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </button>
+                <!-- TODO: Make sure CV is up to date before submission! -->
+                <a href="Roko_Skugor_Resume.pdf" download class="btn-hero btn-outline-custom">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <!-- Who am I section with stats -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// who am i</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <!-- Left side - placeholder image with decorators -->
+                <!-- Originally wanted to use actual photo but placeholder looks cleaner -->
+                <div class="about-image-wrapper animate-on-scroll">
+                    <div class="about-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <!-- Decorative floating squares - added these for visual interest -->
+                    <div class="about-decorator about-decorator-1"></div>
+                    <div class="about-decorator about-decorator-2"></div>
+                </div>
+                
+                <!-- Right side - content and stats -->
+                <div class="about-content animate-on-scroll">
+                    <h3>Cloud & DevOps Engineer</h3>
+                    <p>
+                        I'm a passionate Cloud & DevOps Engineer with hands-on experience in AWS, Terraform, CI/CD, and security automation. Currently pursuing my BSc (Hons) in Cloud Computing at TU Dublin, I specialize in building scalable, secure, and efficient cloud-native solutions.
+                    </p>
+                    <p>
+                        My approach combines technical expertise with a problem-solving mindset. I thrive on automating workflows, implementing infrastructure as code, and collaborating with cross-functional teams to deliver impactful solutions.
+                    </p>
+                    
+                    <!-- Stats from my internship - these are real numbers -->
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">90%</div>
+                            <div class="stat-label">CMDB Accuracy Achieved</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">38%</div>
+                            <div class="stat-label">Build Time Reduction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Devices Standardized</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <!-- Portfolio of my work organized by year -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// my work</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            
+            <!-- Filter buttons - JavaScript handles the filtering logic -->
+            <!-- Got this idea from those portfolio sites I researched -->
+            <div class="project-filters animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="year-4">Year 4</button>
+                <button class="filter-btn" data-filter="year-3">Year 3</button>
+                <button class="filter-btn" data-filter="year-2">Year 2</button>
+                <button class="filter-btn" data-filter="year-1">Year 1</button>
+            </div>
+            
+            <!-- Project cards grid -->
+            <!-- Each card has data-year attribute for filtering -->
+            <div class="projects-grid">
+                <!-- Year 4 Project - IAM Security -->
+                <div class="project-card animate-on-scroll" data-year="year-4">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="project-year">Year 4</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IAM Auditor & Remediation Pipeline</h3>
+                        <p class="project-description">
+                            Built a dual-layer IAM misconfiguration detection and auto-remediation system with PR gates and runtime monitoring. Achieved less than 5 minutes MTTD/MTTR with 15+ custom security rules.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">Checkov</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 3 Project - Flood Alert System -->
+                <div class="project-card animate-on-scroll" data-year="year-3">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <span class="project-year">Year 3</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MQTT Flood Alert System</h3>
+                        <p class="project-description">
+                            Real-time flood monitoring system with sensor visualizations, live MQTT feed, and Svelte UI. Features automated maintenance tasks and comprehensive observability metrics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Svelte</span>
+                            <span class="tech-tag">MQTT</span>
+                            <span class="tech-tag">Bash</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 3 Project - CI/CD Gates -->
+                <div class="project-card animate-on-scroll" data-year="year-3">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="project-year">Year 3</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CI/CD Security Gates</h3>
+                        <p class="project-description">
+                            Integrated GitHub Actions pipelines with OPA/Checkov to enforce IAM policy best practices pre-merge, preventing security misconfigurations before deployment.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">OPA</span>
+                            <span class="tech-tag">Checkov</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 2 Project - Monitoring Dashboard -->
+                <div class="project-card animate-on-scroll" data-year="year-2">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <span class="project-year">Year 2</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Observability Dashboard</h3>
+                        <p class="project-description">
+                            Built comprehensive monitoring solution using Prometheus Push Gateway and Grafana to track MTTD/MTTR metrics and compliance scores across infrastructure.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 2 Project - Reporting Automation -->
+                <div class="project-card animate-on-scroll" data-year="year-2">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span class="project-year">Year 2</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Data Reporting Automation</h3>
+                        <p class="project-description">
+                            Developed automated reporting pipelines using Tableau dashboards and Python/pandas for internal reporting and license tracking, replacing manual Excel workflows.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Tableau</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year 1 Project - OS Hardening -->
+                <div class="project-card animate-on-scroll" data-year="year-1">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span class="project-year">Year 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">OS Hardening Automation</h3>
+                        <p class="project-description">
+                            Implemented cross-platform secure provisioning using NinjaOne for endpoint management with chain-of-custody controls and security compliance verification.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">NinjaOne</span>
+                            <span class="tech-tag">PowerShell</span>
+                            <span class="tech-tag">Bash</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE SECTION ========== -->
+    <!-- Work history with timeline design -->
+    <!-- Timeline style inspired by LinkedIn and other professional portfolios -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// career path</span>
+                <h2 class="section-title">Work Experience</h2>
+            </div>
+            
+            <div class="timeline">
+                <!-- Current Job - IT Intern -->
+                <!-- Added Dec 2024 - These are actual achievements from my internship -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title">IT Intern</h3>
+                                <p class="timeline-company">Openmind Networks • Dublin, Ireland</p>
+                            </div>
+                            <span class="timeline-date">Feb 2025 - Present</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Automated ServiceNow CMDB updates with GlideRecord, boosting config accuracy from 30% to 90%</li>
+                            <li>Built dashboards for asset/ticket analytics, replacing legacy Excel reports</li>
+                            <li>Cut license costs by ~€300/month via SaaS usage analysis and Python automation</li>
+                            <li>Standardized secure endpoint builds (100+ devices), reducing build time by ~38%</li>
+                            <li>Collaborated on incident/change/problem management in ServiceNow</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Previous Job - Factory Work -->
+                <!-- Added this to show I have other work experience too -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title">Factory Operative</h3>
+                                <p class="timeline-company">Jabil • Dublin, Ireland</p>
+                            </div>
+                            <span class="timeline-date">Aug 2022 - Feb 2023</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Assembled and configured server units on a high-volume production line, following strict work instructions and quality standards.</li>
+                            <li>Performed functional testing on servers, including RAM and CPU diagnostics, to ensure full performance and reliability before shipment.</li>
+                            <li>Certified to operate 4 different test stations (including RAM and CPU stations), rotating across roles depending on production needs.</li>
+                            <li>Accurately recorded test results, reported failures, and worked closely with technicians and teammates to meet daily targets and minimise downtime.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION SECTION ========== -->
+    <!-- Academic background with same timeline style as experience -->
+    <!-- Had to match the styling to the experience section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// academic background</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+            
+            <div class="education-timeline">
+                <!-- Current degree -->
+                <div class="education-card animate-on-scroll">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3 class="education-degree">BSc (Hons) in Cloud Computing</h3>
+                        <p class="education-school">Technological University Dublin</p>
+                        <p class="education-date">Expected May 2026</p>
+                    </div>
+                </div>
+                
+                <!-- Previous degree (didn't complete) -->
+                <div class="education-card animate-on-scroll">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3 class="education-degree">BSc in Information Technologies</h3>
+                        <p class="education-school">Faculty of Organisation and Informatics</p>
+                        <p class="education-date">Sep 2020 - Sep 2022 (not completed)</p>
+                    </div>
+                </div>
+                
+                <!-- High school -->
+                <div class="education-card animate-on-scroll">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3 class="education-degree">Matura Exam</h3>
+                        <p class="education-school">X. Gymnasium "Ivan Supek"</p>
+                        <p class="education-date">Sep 2016 - Jul 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS SECTION ========== -->
+    <!-- Professional credentials - need to add more as I get them -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// credentials</span>
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            
+            <div class="cert-grid">
+                <!-- AWS Cert - got this one already -->
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h4 class="cert-title">AWS Cloud Practitioner</h4>
+                    <p class="cert-issuer">Amazon Web Services</p>
+                </div>
+                
+                <!-- Working on this one currently -->
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="cert-title">Security Fundamentals</h4>
+                    <p class="cert-issuer">In Progress</p>
+                </div>
+                
+                <!-- Planning to get this after graduation -->
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h4 class="cert-title">Terraform Associate</h4>
+                    <p class="cert-issuer">HashiCorp - Planned</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS SECTION ========== -->
+    <!-- Technical skills organized by category -->
+    <!-- TODO: Keep this updated as I learn new stuff -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// tech stack</span>
+                <h2 class="section-title">Skills</h2>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Cloud & DevOps category -->
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="skill-category-title">Cloud & DevOps</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">IAM</span>
+                        <span class="skill-tag">Lambda</span>
+                        <span class="skill-tag">S3</span>
+                        <span class="skill-tag">EC2</span>
+                        <span class="skill-tag">VPC</span>
+                        <span class="skill-tag">CloudTrail</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">IaC</span>
+                    </div>
+                </div>
+
+                <!-- Security & Monitoring category -->
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="skill-category-title">Security & Monitoring</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">IAM Access Analyzer</span>
+                        <span class="skill-tag">Security Hub</span>
+                        <span class="skill-tag">Checkov</span>
+                        <span class="skill-tag">OPA/Conftest</span>
+                        <span class="skill-tag">CloudWatch</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">Prometheus</span>
+                    </div>
+                </div>
+
+                <!-- Automation & Scripting category -->
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3 class="skill-category-title">Automation & Scripting</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">GlideRecord</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">N8N</span>
+                        <span class="skill-tag">make.com</span>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms category -->
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-category-title">Tools & Platforms</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NinjaOne RMM</span>
+                        <span class="skill-tag">ESET</span>
+                        <span class="skill-tag">SOPHOS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">ServiceNow</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">macOS</span>
+                        <span class="skill-tag">Windows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOBBIES SECTION ========== -->
+    <!-- Personal interests - shows I have a life outside coding lol -->
+    <section id="hobbies">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// beyond code</span>
+                <h2 class="section-title">Hobbies & Interests</h2>
+            </div>
+            
+            <!-- Simple grid of hobby cards with emojis -->
+            <div class="hobbies-grid">
+                <div class="hobby-card animate-on-scroll">
+                    <span class="hobby-icon">🎮</span>
+                    <h4 class="hobby-title">Gaming</h4>
+                </div>
+                <div class="hobby-card animate-on-scroll">
+                    <span class="hobby-icon">🏋️</span>
+                    <h4 class="hobby-title">Fitness</h4>
+                </div>
+                <div class="hobby-card animate-on-scroll">
+                    <span class="hobby-icon">📚</span>
+                    <h4 class="hobby-title">Tech Reading</h4>
+                </div>
+                <div class="hobby-card animate-on-scroll">
+                    <span class="hobby-icon">🌍</span>
+                    <h4 class="hobby-title">Travel</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <!-- Ways to get in touch with me -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">// get in touch</span>
+                <h2 class="section-title">Contact Me</h2>
+            </div>
+            
+            <div class="contact-container animate-on-scroll">
+                <p class="contact-text">
+                    I'm always open to discussing new opportunities, interesting projects, or just having a chat about cloud computing and DevOps. Feel free to reach out!
+                </p>
+                
+                <!-- Contact methods - email, phone, LinkedIn -->
+                <div class="contact-methods">
+                    <a href="mailto:rskugor23@gmail.com" class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                        <strong>rskugor23@gmail.com</strong>
+                    </a>
+                    <a href="tel:+353851687265" class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <span>Phone</span>
+                        <strong>+353 85 168 7265</strong>
+                    </a>
+                    <a href="https://linkedin.com/in/roko-skugor" target="_blank" class="contact-method">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                        <strong>roko-skugor</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT MODAL ========== -->
+    <!-- Popup modal for contact info - triggered by "Contact Me" button in hero -->
+    <!-- Learned how to build modals from scratch instead of using Bootstrap's -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Let's Connect</h3>
+                <!-- Close button with × symbol -->
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- All my contact links in one place -->
+                <a href="mailto:rskugor23@gmail.com" class="modal-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>rskugor23@gmail.com</span>
+                </a>
+                <a href="tel:+353851687265" class="modal-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+353 85 168 7265</span>
+                </a>
+                <a href="https://linkedin.com/in/roko-skugor" target="_blank" class="modal-contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>linkedin.com/in/roko-skugor</span>
+                </a>
+                <a href="https://github.com/roko-skugor" target="_blank" class="modal-contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>github.com/roko-skugor</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <!-- Bottom of page with social links and copyright -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo with code tag style brackets -->
+                <div class="footer-logo">
+                    <span>&lt;</span>Roko<span>/&gt;</span>
+                </div>
+                
+                <!-- Social media links -->
+                <div class="footer-links">
+                    <a href="https://github.com/roko-skugor" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/roko-skugor" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:rskugor23@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                
+                <p class="footer-copyright">© 2025 Roko Skugor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS - needed for the assignment even though I'm not really using it -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- My custom JavaScript file - this is where all the magic happens -->
+    <script src="script.js"></script>
+</body>
+</html>
