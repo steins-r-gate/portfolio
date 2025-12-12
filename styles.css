@@ -486,6 +486,16 @@ section {
     overflow: hidden;
 }
 
+/* Profile photo styling */
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;  /* This shifts the image to show the top/hair */
+    position: relative;
+    z-index: 1;
+}
+
 /* Inner background for the image */
 .about-image::before {
     content: '';

@@ -133,10 +133,9 @@ window.addEventListener('resize', () => {
 const phrases = [
     'Cloud Computing Graduate',
     'AWS Solutions Developer',
-    'ServiceNow Automation Specialist',
     'DevOps Engineer',
     'Security & IAM Developer',
-    'Python Automation Expert',
+    'Python Automation Developer',
     'Infrastructure as Code'
 ];
 
