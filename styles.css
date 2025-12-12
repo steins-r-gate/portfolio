@@ -1,41 +1,46 @@
 /* ===== CSS VARIABLES ===== */
+/* Spent ages picking these colors - went through like 10 different shades of teal */
+/* Finally settled on #00d4aa because it looks professional but still has that tech vibe */
 :root {
-    --primary: #00d4aa;
-    --primary-dark: #00a888;
-    --primary-glow: rgba(0, 212, 170, 0.3);
-    --secondary: #6366f1;
-    --bg-dark: #0a0f1c;
-    --bg-card: #111827;
-    --bg-card-hover: #1f2937;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border: #1e293b;
-    --terminal-green: #4ade80;
-    --warning: #fbbf24;
-    --error: #f87171;
+    --primary: #00d4aa;  /* main teal color - love this shade */
+    --primary-dark: #00a888;  /* darker version for hover states */
+    --primary-glow: rgba(0, 212, 170, 0.3);  /* for that glow effect on buttons */
+    --secondary: #6366f1;  /* purple-ish blue for accents */
+    --bg-dark: #0a0f1c;  /* almost black background */
+    --bg-card: #111827;  /* slightly lighter for cards */
+    --bg-card-hover: #1f2937;  /* even lighter on hover */
+    --text-primary: #f8fafc;  /* off-white, easier on eyes than pure white */
+    --text-secondary: #94a3b8;  /* muted text */
+    --text-muted: #64748b;  /* even more muted lol */
+    --border: #1e293b;  /* subtle borders */
+    --terminal-green: #4ade80;  /* classic terminal green (not using this much tho) */
+    --warning: #fbbf24;  /* yellow */
+    --error: #f87171;  /* red */
 }
 
 /* ===== RESET & BASE ===== */
+/* Basic reset - learned this from CSS-Tricks */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;  /* this makes life so much easier */
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;  /* smooth scrolling between sections */
 }
 
 body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;  /* modern sans-serif font */
     background: var(--bg-dark);
     color: var(--text-primary);
-    line-height: 1.7;
-    overflow-x: hidden;
+    line-height: 1.7;  /* makes text more readable */
+    overflow-x: hidden;  /* prevents horizontal scroll issues */
 }
 
 /* ===== SCROLLBAR ===== */
+/* Custom scrollbar to match the theme */
+/* Learned this from Stack Overflow - works in Chrome/Edge but not Firefox :( */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -50,20 +55,23 @@ body {
 }
 
 /* ===== TOP NAVBAR ===== */
+/* Fixed navbar at the top */
+/* This one hides when you scroll down - took me forever to get right */
 .navbar-top {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    background: rgba(10, 15, 28, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;  /* high z-index so it stays on top */
+    background: rgba(10, 15, 28, 0.85);  /* slightly transparent */
+    backdrop-filter: blur(20px);  /* glassmorphism effect */
+    -webkit-backdrop-filter: blur(20px);  /* Safari support */
     border-bottom: 1px solid rgba(255,255,255,0.05);
     padding: 1rem 0;
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
+/* Hidden state - controlled by JavaScript */
 .navbar-top.hidden {
     transform: translateY(-100%);
     opacity: 0;
@@ -93,6 +101,8 @@ body {
     color: var(--text-primary);
 }
 
+/* Underline animation on hover */
+/* Got this idea from some portfolio I saw online */
 .nav-item::after {
     content: '';
     position: absolute;
@@ -109,6 +119,7 @@ body {
 }
 
 /* ===== DROPDOWN ===== */
+/* Dropdown menus for Portfolio and Background sections */
 .nav-dropdown {
     position: relative;
 }
@@ -124,15 +135,16 @@ body {
     padding: 0.75rem 0;
     min-width: 180px;
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden;  /* hidden by default */
     transition: all 0.3s ease;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
+/* Show dropdown on hover */
 .nav-dropdown:hover .nav-dropdown-content {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);  /* slide down effect */
 }
 
 .nav-dropdown-content a {
@@ -149,6 +161,7 @@ body {
     background: rgba(0, 212, 170, 0.1);
 }
 
+/* Arrow that rotates on hover */
 .dropdown-arrow {
     font-size: 0.7rem;
     margin-left: 0.3rem;
@@ -156,21 +169,23 @@ body {
 }
 
 .nav-dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg);
+    transform: rotate(180deg);  /* flip arrow when dropdown opens */
 }
 
 /* ===== BOTTOM NAVBAR ===== */
+/* Floating navbar that appears after hero section */
+/* Got this idea from the AWS console navigation - looks really clean */
 .navbar-bottom {
     position: fixed;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%) translateY(100px);
+    transform: translateX(-50%) translateY(100px);  /* start below viewport */
     z-index: 1000;
     background: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
-    border-radius: 50px;
+    border-radius: 50px;  /* pill shape */
     padding: 0.75rem 2rem;
     display: flex;
     gap: 1.5rem;
@@ -179,6 +194,7 @@ body {
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
+/* Visible state - triggered by scroll */
 .navbar-bottom.visible {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
@@ -193,37 +209,41 @@ body {
 
 .navbar-bottom a:hover {
     color: var(--primary);
-    transform: translateY(-3px);
+    transform: translateY(-3px);  /* little lift effect */
 }
 
 /* ===== HERO SECTION ===== */
+/* Main landing section with particle animation background */
 #hero {
-    min-height: 100vh;
+    min-height: 100vh;  /* full viewport height */
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 80px;
+    padding-top: 80px;  /* space for fixed navbar */
 }
 
+/* Canvas element for particle animation */
+/* This was a PAIN to implement - learned about Canvas API from MDN */
 #particles-canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 0;  /* behind content */
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 1;  /* above canvas */
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
     padding: 2rem;
 }
 
+/* Badge with pulsing dot */
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -232,13 +252,14 @@ body {
     border: 1px solid rgba(0, 212, 170, 0.3);
     padding: 0.5rem 1rem;
     border-radius: 50px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;  /* monospace for that dev look */
     font-size: 0.8rem;
     color: var(--primary);
     margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease;
 }
 
+/* Pulsing dot animation */
 .badge-dot {
     width: 8px;
     height: 8px;
@@ -247,17 +268,20 @@ body {
     animation: pulse 2s infinite;
 }
 
+/* Main title with gradient text */
+/* Gradient text is tricky - need to use background-clip */
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);  /* responsive sizing */
     font-weight: 700;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 50%, var(--secondary) 100%);
     background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;  /* Safari */
+    -webkit-text-fill-color: transparent;  /* makes text transparent so gradient shows */
     animation: fadeInUp 0.8s ease 0.1s backwards;
 }
 
+/* Subtitle with typing animation */
 .hero-subtitle {
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.1rem;
@@ -270,10 +294,12 @@ body {
     color: var(--primary);
 }
 
+/* Blinking cursor for typing effect */
 .cursor {
     animation: blink 1s infinite;
 }
 
+/* Hero buttons container */
 .hero-buttons {
     display: flex;
     justify-content: center;
@@ -283,6 +309,7 @@ body {
 }
 
 /* ===== BUTTONS ===== */
+/* Button styles for hero section */
 .btn-hero {
     display: inline-flex;
     align-items: center;
@@ -297,17 +324,19 @@ body {
     cursor: pointer;
 }
 
+/* Primary button - teal */
 .btn-primary-custom {
     background: var(--primary);
-    color: var(--bg-dark);
+    color: var(--bg-dark);  /* dark text on light background */
 }
 
 .btn-primary-custom:hover {
     background: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px var(--primary-glow);
+    transform: translateY(-3px);  /* lift up */
+    box-shadow: 0 10px 30px var(--primary-glow);  /* glow effect */
 }
 
+/* Secondary button - outlined */
 .btn-secondary-custom {
     background: transparent;
     border: 1px solid var(--border);
@@ -320,6 +349,7 @@ body {
     transform: translateY(-3px);
 }
 
+/* Outline button - teal border */
 .btn-outline-custom {
     background: transparent;
     border: 1px solid var(--primary);
@@ -328,21 +358,33 @@ body {
 
 .btn-outline-custom:hover {
     background: var(--primary);
-    color: var(--bg-dark);
+    color: var(--bg-dark);  /* inverts on hover */
     transform: translateY(-3px);
 }
 
 /* ===== ANIMATIONS ===== */
+/* Keyframe animations used throughout the site */
+
+/* Pulsing animation for badge dot */
 @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(1.2); 
+    }
 }
 
+/* Blinking cursor */
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
 
+/* Fade in from bottom */
+/* Used for hero elements and scroll animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -354,25 +396,33 @@ body {
     }
 }
 
+/* Floating animation for decorative elements */
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(5deg); }
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(5deg); 
+    }
 }
 
 /* ===== SECTIONS ===== */
+/* General section styling */
 section {
-    min-height: 100vh;
+    min-height: 100vh;  /* each section is at least full screen */
     display: flex;
     align-items: center;
     padding: 6rem 0;
     position: relative;
 }
 
+/* Section header styling */
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
 }
 
+/* Comment-style tag above section titles */
 .section-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
@@ -381,13 +431,15 @@ section {
     margin-bottom: 0.75rem;
 }
 
+/* Section titles */
 .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);  /* responsive */
     font-weight: 700;
     position: relative;
     display: inline-block;
 }
 
+/* Underline decoration for section titles */
 .section-title::after {
     content: '';
     position: absolute;
@@ -405,9 +457,11 @@ section {
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.5) 100%);
 }
 
+/* Grid layout for about section */
+/* Left side: image, Right side: content */
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.5fr;  /* 40% left, 60% right */
     gap: 4rem;
     align-items: center;
 }
@@ -416,10 +470,12 @@ section {
     position: relative;
 }
 
+/* Placeholder image with gradient border */
+/* Originally wanted to use actual photo but icon looks cleaner */
 .about-image {
     width: 100%;
     max-width: 350px;
-    aspect-ratio: 1;
+    aspect-ratio: 1;  /* perfect square */
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     border-radius: 20px;
     display: flex;
@@ -430,15 +486,17 @@ section {
     overflow: hidden;
 }
 
+/* Inner background for the image */
 .about-image::before {
     content: '';
     position: absolute;
-    inset: 3px;
+    inset: 3px;  /* 3px border effect */
     background: var(--bg-card);
     border-radius: 17px;
     z-index: 0;
 }
 
+/* Icon with gradient */
 .about-image i {
     position: relative;
     z-index: 1;
@@ -448,6 +506,8 @@ section {
     -webkit-text-fill-color: transparent;
 }
 
+/* Decorative floating squares */
+/* Added these for visual interest - they float around */
 .about-decorator {
     position: absolute;
     width: 100px;
@@ -466,7 +526,7 @@ section {
 .about-decorator-2 {
     bottom: -20px;
     left: -20px;
-    animation: float 4s ease-in-out infinite 2s;
+    animation: float 4s ease-in-out infinite 2s;  /* 2s delay */
 }
 
 .about-content h3 {
@@ -481,6 +541,7 @@ section {
     font-size: 1.05rem;
 }
 
+/* Stats grid - shows key metrics */
 .about-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -520,6 +581,7 @@ section {
     background: var(--bg-dark);
 }
 
+/* Filter buttons for project years */
 .project-filters {
     display: flex;
     justify-content: center;
@@ -540,6 +602,7 @@ section {
     transition: all 0.3s ease;
 }
 
+/* Active and hover states */
 .filter-btn:hover,
 .filter-btn.active {
     background: var(--primary);
@@ -547,12 +610,14 @@ section {
     color: var(--bg-dark);
 }
 
+/* Projects grid - auto-fit is amazing for responsive layouts */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
+/* Individual project card */
 .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -562,6 +627,7 @@ section {
     position: relative;
 }
 
+/* Gradient line at top - only shows on hover */
 .project-card::before {
     content: '';
     position: absolute;
@@ -570,16 +636,16 @@ section {
     right: 0;
     height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
-    transform: scaleX(0);
+    transform: scaleX(0);  /* hidden by default */
     transition: transform 0.4s ease;
 }
 
 .project-card:hover::before {
-    transform: scaleX(1);
+    transform: scaleX(1);  /* reveal on hover */
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px);  /* lift effect */
     border-color: var(--primary);
     box-shadow: 0 20px 40px rgba(0, 212, 170, 0.1);
 }
@@ -603,6 +669,7 @@ section {
     color: var(--primary);
 }
 
+/* Year badge */
 .project-year {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
@@ -630,6 +697,7 @@ section {
     line-height: 1.6;
 }
 
+/* Technology tags */
 .project-tech {
     display: flex;
     flex-wrap: wrap;
@@ -647,6 +715,8 @@ section {
 }
 
 /* ===== EXPERIENCE SECTION ===== */
+/* Timeline design for work experience */
+/* Inspired by LinkedIn's timeline layout */
 #experience {
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.5) 100%);
 }
@@ -657,6 +727,7 @@ section {
     margin: 0 auto;
 }
 
+/* Vertical line on the left */
 .timeline::before {
     content: '';
     position: absolute;
@@ -673,18 +744,20 @@ section {
     margin-bottom: 3rem;
 }
 
+/* Dot on the timeline */
 .timeline-dot {
     position: absolute;
-    left: -6px;
+    left: -6px;  /* centered on the line */
     top: 0;
     width: 14px;
     height: 14px;
     background: var(--primary);
     border-radius: 50%;
-    border: 3px solid var(--bg-dark);
-    box-shadow: 0 0 0 3px var(--primary);
+    border: 3px solid var(--bg-dark);  /* creates ring effect */
+    box-shadow: 0 0 0 3px var(--primary);  /* outer glow */
 }
 
+/* Content card */
 .timeline-content {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -695,7 +768,7 @@ section {
 
 .timeline-content:hover {
     border-color: var(--primary);
-    transform: translateX(10px);
+    transform: translateX(10px);  /* slide right on hover */
 }
 
 .timeline-header {
@@ -718,6 +791,7 @@ section {
     font-size: 1rem;
 }
 
+/* Date badge */
 .timeline-date {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
@@ -732,6 +806,7 @@ section {
     margin-bottom: 1rem;
 }
 
+/* Achievement bullet points */
 .timeline-achievements {
     list-style: none;
 }
@@ -744,6 +819,7 @@ section {
     font-size: 0.95rem;
 }
 
+/* Arrow bullet point */
 .timeline-achievements li::before {
     content: '▹';
     position: absolute;
@@ -752,7 +828,8 @@ section {
 }
 
 /* ===== EDUCATION SECTION ===== */
-/* ===== EDUCATION SECTION ===== */
+/* Same timeline style as experience section */
+/* Keeping it consistent across the site */
 #education {
     background: var(--bg-dark);
 }
@@ -763,6 +840,7 @@ section {
     margin: 0 auto;
 }
 
+/* Vertical line */
 .education-timeline::before {
     content: '';
     position: absolute;
@@ -783,6 +861,7 @@ section {
     margin-bottom: 0;
 }
 
+/* Graduation cap icon on timeline */
 .education-icon {
     position: absolute;
     left: -23px;
@@ -837,7 +916,7 @@ section {
     display: inline-block;
 }
 
-/* Mobile responsiveness */
+/* Mobile adjustments for education section */
 @media (max-width: 768px) {
     .education-timeline::before {
         left: 6px;
@@ -860,6 +939,7 @@ section {
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.5) 100%);
 }
 
+/* Grid of certification cards */
 .cert-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -908,6 +988,8 @@ section {
 }
 
 /* ===== SKILLS SECTION ===== */
+/* Skills organized by category */
+/* TODO: Keep this updated as I learn new stuff */
 #skills {
     background: var(--bg-dark);
 }
@@ -950,6 +1032,7 @@ section {
     color: var(--text-primary);
 }
 
+/* Individual skill tags */
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
@@ -974,6 +1057,7 @@ section {
 }
 
 /* ===== HOBBIES SECTION ===== */
+/* Personal interests - shows I have a life outside coding lol */
 #hobbies {
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.5) 100%);
 }
@@ -998,7 +1082,7 @@ section {
 
 .hobby-card:hover {
     border-color: var(--primary);
-    transform: scale(1.05);
+    transform: scale(1.05);  /* zoom effect */
 }
 
 .hobby-icon {
@@ -1033,6 +1117,7 @@ section {
     margin-right: auto;
 }
 
+/* Contact method cards */
 .contact-methods {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1074,6 +1159,8 @@ section {
 }
 
 /* ===== CONTACT MODAL ===== */
+/* Popup modal for contact info */
+/* Built this from scratch instead of using Bootstrap's modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1082,7 +1169,7 @@ section {
     bottom: 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-    z-index: 2000;
+    z-index: 2000;  /* above everything */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -1091,6 +1178,7 @@ section {
     justify-content: center;
 }
 
+/* Active state - controlled by JavaScript */
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -1103,12 +1191,12 @@ section {
     padding: 3rem;
     max-width: 500px;
     width: 90%;
-    transform: scale(0.9);
+    transform: scale(0.9);  /* starts slightly smaller */
     transition: transform 0.3s ease;
 }
 
 .modal-overlay.active .modal-content {
-    transform: scale(1);
+    transform: scale(1);  /* scales to full size */
 }
 
 .modal-header {
@@ -1123,6 +1211,7 @@ section {
     font-weight: 600;
 }
 
+/* Close button (X) */
 .modal-close {
     background: none;
     border: none;
@@ -1182,6 +1271,7 @@ footer {
     gap: 1.5rem;
 }
 
+/* Logo with code-style brackets */
 .footer-logo {
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.25rem;
@@ -1193,6 +1283,7 @@ footer {
     color: var(--primary);
 }
 
+/* Social media links */
 .footer-links {
     display: flex;
     gap: 1.5rem;
@@ -1215,6 +1306,8 @@ footer {
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
+/* Elements with this class fade in when scrolled into view */
+/* Using Intersection Observer API in JavaScript */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -1227,14 +1320,18 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
+/* Media queries for different screen sizes */
+/* Mobile-first approach - these override base styles */
+
+/* Tablets and smaller laptops */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* stack vertically */
         text-align: center;
     }
 
     .about-image-wrapper {
-        order: -1;
+        order: -1;  /* image goes on top */
         margin: 0 auto;
     }
 
@@ -1243,6 +1340,7 @@ footer {
     }
 }
 
+/* Mobile devices */
 @media (max-width: 768px) {
     .navbar-top .nav-container {
         gap: 1rem;
@@ -1265,13 +1363,14 @@ footer {
     }
 
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* stack vertically on mobile */
     }
 
     .projects-grid {
         grid-template-columns: 1fr;
     }
 
+    /* Adjust timeline for mobile */
     .timeline::before {
         left: 6px;
     }
@@ -1290,6 +1389,7 @@ footer {
     }
 }
 
+/* Very small mobile devices */
 @media (max-width: 480px) {
     .navbar-bottom {
         padding: 0.5rem 1rem;
@@ -1297,7 +1397,7 @@ footer {
     }
 
     section {
-        padding: 4rem 0;
+        padding: 4rem 0;  /* less padding on small screens */
     }
 
     .project-header,
